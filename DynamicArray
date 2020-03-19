@@ -1,0 +1,77 @@
+package classes_and_objects;
+public class DynamicArray {
+	int d[];
+	int nextIndex;
+	DynamicArray(){
+		d=new int[5];
+		nextIndex=0;
+	}
+	public int size() {
+		return nextIndex;
+	}
+	public boolean isEmpty() {
+		return size()==0;
+	}
+	public void add(int i) {
+		if(nextIndex==d.length) {
+			restructure();
+		}
+		d[nextIndex]=i;
+		nextIndex++;
+	}
+	private  void restructure() {
+	   int temp[]=d;
+	   d=new int[d.length*2];
+	   for(int i=0;i<temp.length;i++) {
+		   d[i]=temp[i];
+	   }
+		
+	}
+	public void set(int index,int value) {
+		if(index>nextIndex)
+			return;
+		else if(index<nextIndex)
+			d[index]=value;
+		else
+			add(value);
+
+	}
+	public int get(int index) {
+		if(index>=nextIndex){
+    //error out
+			return -1;}
+		else
+			return d[index];
+	}
+
+	private int removeLast() {
+		if (size() == 0) {
+			// error out
+			return -1;
+		}
+		int value = d[nextIndex - 1];
+		d[nextIndex - 1] = 0;
+		nextIndex--;
+		return value;
+	}
+
+
+
+	public static void main(String[] args) {
+		DynamicArray d=new DynamicArray();
+		for(int i=0;i<100;i++) {
+			d.add(i+10);
+		}
+		System.out.println(d.size());
+
+		d.set(4, 10);
+		System.out.println(d.get(3));
+		System.out.println(d.get(4));
+
+		while (!d.isEmpty()) {
+			System.out.println(d.removeLast());
+			System.out.println("size = " + d.size());
+		}
+	}
+
+}
