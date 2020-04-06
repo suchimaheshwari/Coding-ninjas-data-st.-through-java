@@ -1,0 +1,61 @@
+public class Solution {
+    public static int balancedTreesOfHeightH(int height){
+        if(height==0 || height==1)
+            return 1;
+        if(height==2)
+            return 3;
+        int storage[]=new int[height+1];
+        storage[0]=1;
+        storage[1]=1;
+        storage[2]=3;
+        int mod=(int)Math.pow(10,9)+7;
+        for(int i=3;i<storage.length;i++)
+        {  
+    int x = storage[i-1];
+            int y = storage[i-2];
+            long a=(long)x*x;
+            long b=(long)x*y*2;
+            int value1=(int)(a%mod);
+            int value2=(int)(b%mod);
+            storage[i]=(value1+value2)%mod;
+        }
+        return storage[height];
+    }
+}
+
+
+// 
+
+/////memoization/////////////
+// public class Solution 
+// {
+//     public static int balancedTreesOfHeightH(int height)
+//     {
+//         int storage[]=new int[height+1];
+//         for(int i=0;i<storage.length;i++)
+//         {
+//             storage[i]=-1;
+//         }
+//         int mod=(int)Math.pow(10,9)+7;
+//         return balancedOfTreesHeightH(storage,height,mod);
+//     }
+//     private static int balancedOfTreesHeightH(int storage[],int height,int mod){
+//         if(height==0 || height==1){
+//             storage[height]=1;
+//             return 1;}
+//         if(storage[height]!=-1)
+//             return storage[height];
+
+//         int x=balancedOfTreesHeightH(storage,height-1,mod);
+//         int y=  balancedOfTreesHeightH(storage,height-2,mod);
+//         long value1=(long)x*x;
+//         long value2=(long)y*x*2;
+//         int res1=(int)(value1%mod);
+//         int res2=(int)(value2%mod);
+//         storage[height]=(res1+res2)%mod;
+//         return storage[height];
+
+//     }
+
+
+// }
