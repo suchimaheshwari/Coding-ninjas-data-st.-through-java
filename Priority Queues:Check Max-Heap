@@ -1,0 +1,72 @@
+public class Solution {
+
+    public static boolean checkMaxHeap(int arr[]) {
+       
+        //mysolution==========
+//         if(arr.length==0)
+//             return true;
+//         if(arr.length==1)
+//             return true;
+//         boolean b=false;
+     
+//         for(int i=0;i<arr.length;i++){
+//             if(2*i+1<arr.length){
+//                 if(arr[i]>=arr[2*i+1])
+//                 {
+//                     b=true; 
+//                 }
+//                 else{
+
+//                     b=false;
+//                     break;
+//                 }
+//             }
+//             else
+//                 break;
+//             if(2*i+2<arr.length){
+//                 if( arr[i]>=arr[2*i+2]){
+//                     b=true;
+//                 }
+//                 else{
+
+//                     b=false;
+//                     break;
+//                 }}
+//             else 
+//                 break;
+//             if(b==false){
+//                 break;
+//             }
+//         }
+//         return b;
+//     }
+// }
+
+        
+        
+        
+        
+        
+        
+        //or=======
+        int n=arr.length;
+        for(int i=0;i<arr.length;i++){
+        if((2*i+1)<n && arr[i]<arr[2*i+1])
+            return false;
+       if((2*i+2)<n && arr[i]<arr[2*i+1])
+           return false;
+        }
+        return true;}}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
