@@ -1,0 +1,13 @@
+public class DuplicateInArray{	
+public static int duplicate(int[] arr){ 
+    int sum=0;
+    for(int i=0;i<arr.length;i++)
+    {
+        sum+=arr[i];
+    }
+    int sumFormula=((arr.length-2)*(arr.length-1))/2;
+ 
+    return sum-sumFormula;
+        
+}
+}
