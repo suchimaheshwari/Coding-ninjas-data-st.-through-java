@@ -1,0 +1,88 @@
+import java.util.ArrayList;
+
+public class Solution {
+
+/*	Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	*/
+
+
+// 	public static void printNodesSumToS(BinaryTreeNode<Integer> root, int s) {
+//       printNodesSumToS(root ,root ,s);
+        
+//     }
+
+//     public static void printNodesSumToS(BinaryTreeNode<Integer> temp1 ,BinaryTreeNode<Integer> temp2 ,int s){
+//         if(temp1 == null){
+//             return;
+//         }
+//         if(temp2 == null){
+//             return;
+//         }
+        
+//         printNodesSumToS(temp1.left, temp2 ,s);
+//         printNodesSumToS(temp1, temp2.right ,s);
+
+//         int sum = temp1.data + temp2.data;
+
+//         if(sum == s){
+//             System.out.println(temp1.data+" "+temp2.data);
+//             printNodesSumToS(temp1.right ,temp2.left ,s);
+//             //printNodesSumToS(temp2.left);
+//         }else if(sum > s){
+//             printNodesSumToS(temp1 ,temp2.left ,s);
+//         }else{
+//             printNodesSumToS(temp1.right ,temp2 ,s);
+//         }
+            
+
+//     }
+    
+    
+    public static void printNodesSumToS(BinaryTreeNode<Integer> root, int sum) {
+		
+        Queue<BinaryTreeNode<Integer>> pendingNodes = new Queue<>();
+		ArrayList<Integer> list = new ArrayList<>();
+		pendingNodes.enqueue(root);
+		while (!pendingNodes.isEmpty()) {
+			BinaryTreeNode<Integer> frontNode = null;
+			int counter = pendingNodes.size();
+			for (int i = 0; i < counter; i++) {
+				try {
+					frontNode = pendingNodes.dequeue();
+				} catch (QueueEmptyException e) {
+					e.printStackTrace();
+				}
+				list.add(frontNode.data);
+				if (frontNode.left != null) {
+					pendingNodes.enqueue(frontNode.left);
+				}
+				if (frontNode.right != null) {
+					pendingNodes.enqueue(frontNode.right);
+				}
+			}
+		}
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j != i && j < list.size(); j++) {
+				if (list.get(i) + list.get(j) == sum) {
+					if (list.get(i) < list.get(j)) {
+						System.out.println(list.get(i) + " " + list.get(j));
+					} else {
+						System.out.println(list.get(j) + " " + list.get(i));
+					} 
+				}
+			}
+		}
+
+	}
+
+}
