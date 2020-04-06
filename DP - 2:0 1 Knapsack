@@ -1,0 +1,22 @@
+public class Solution {
+
+    public static int knapsack(int[] weight,int value[],int maxWeight, int n)
+    {
+        return knapsack(weight,0,value,maxWeight,n);
+    }
+    public static int knapsack(int[] weight,int sIndex,int value[],int maxWeight, int n){
+        if(sIndex==weight.length)
+            return 0;
+        if(weight[sIndex]>maxWeight)
+        return knapsack(weight,sIndex+1,value,maxWeight,n-1);
+        else
+        {     
+            //===========//include that weight//=========//
+            int op2=value[sIndex]+knapsack(weight,sIndex+1,value,maxWeight-weight[sIndex],n-1);
+            int op3=knapsack(weight,sIndex+1,value,maxWeight,n-1);
+            return  Math.max(op2,op3);
+        }
+
+        
+    }
+}
