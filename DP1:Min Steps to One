@@ -1,0 +1,31 @@
+
+
+
+public class Solution {
+    static int s1,s2,s3;
+    public static int countStepsTo1(int n){
+        if(n==1)
+            return 0;
+
+
+        int o1=countStepsTo1(n-1);
+        int minSteps=o1;
+        if(n%3==0){
+           int o3=countStepsTo1(n/3);
+            if(minSteps>o3)
+                minSteps=o3;}
+
+    
+    if(n%2==0){
+       int o2=countStepsTo1(n/2);
+        if(minSteps>o2)
+            minSteps=o2;
+    }
+
+    return 1+minSteps;
+
+
+
+}
+
+}
