@@ -1,0 +1,151 @@
+// public class Solution 
+// {
+//     public static int largestBSTSubtree(BinaryTreeNode<Integer> root) 
+//     {  
+//         Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> ans=helper(root);// integer=min, integer=max,isBst,height of highest subtree...
+//         return ans.second.second;
+//     }
+//     private static Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> helper(BinaryTreeNode<Integer> root){
+//         if(root==null)
+//         {   Pair<Integer,Integer> p1=new Pair<>(Integer.MAX_VALUE,Integer.MIN_VALUE);
+//          Pair<Boolean,Integer> p2=new Pair<>(true,0);
+//          Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> ans=new Pair<>(p1,p2);
+//          return ans;
+//         }
+//         Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> l=helper(root.left);
+//         Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> r=helper(root.right);
+//         Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> ans;
+//         if(l.second.first==true && r.second.first==true){
+//             if(root.data>l.first.second && root.data<=r.first.first){
+//                 Pair<Integer,Integer> p1=new Pair<>(l.first.first,r.first.second);
+//                 Pair<Boolean,Integer> p2=new Pair<>(true,1+Math.max(l.second.second,r.second.second));
+//                 ans=new Pair<>(p1,p2); 
+//             }
+//             else {
+//                 Pair<Integer,Integer> p1=new Pair(l.first.first,r.first.second);
+//                 Pair<Boolean,Integer> p2=new Pair<>(false,Math.max(l.second.second,r.second.second));
+//                 ans=new Pair<>(p1,p2); 
+//             }}
+//         // else if(l.second.first==true)
+//         // {
+//         //      Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> ans=new Pair<>(l.first.first,r.first.second,false,Math.max(l.second.second,r.second.second)); 
+//         // }
+//         // else if(r.second.second==true){
+//         //      Pair<Pair<Integer,Integer>,Pair<Boolean,Integer>> ans=new Pair<>(l.first.first,r.first.second,false,Math.max(l.second.second,r.second.second)); 
+//         // }
+//         else{
+//             Pair<Integer,Integer> p1=new Pair(l.first.first,r.first.second);
+//             Pair<Boolean,Integer> p2=new Pair(false,Math.max(l.second.second,r.second.second));
+//             ans=new Pair<>(p1,p2); }
+//         return ans;
+
+//     }
+// }
+
+// class Pair<T,U>{
+//     T first;
+//     U second;
+//     public Pair(T first,U second){
+//         this.first=first;
+//         this.second=second;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Pair{
+    int min;
+    int max;
+    boolean isBST;
+    int height;
+}
+
+public class Solution {
+
+/*	Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+    }
+*/
+	
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) {
+        
+        Pair ans = largestBSThelper(root);
+        return ans.height;
+	}
+    
+    
+    public static Pair largestBSThelper(BinaryTreeNode<Integer> root){
+        if(root == null){
+            Pair output = new Pair();
+            output.max = Integer.MIN_VALUE;
+            output.min = Integer.MAX_VALUE;
+            output.isBST = true;
+            output.height = 0;
+            return output;
+        }
+        
+        Pair left  = largestBSThelper(root.left);
+        Pair right = largestBSThelper(root.right);
+        
+        Pair output = new Pair();
+        
+        int min = Math.min(root.data,Math.min(left.min,right.min));
+        int max = Math.max(root.data,Math.max(left.max,right.max));
+        
+        output.min = min;
+        output.max = max;
+        
+        output.isBST = left.max < root.data && right.min > root.data 
+                       && left.isBST && right.isBST;
+        
+        if(output.isBST){
+            output.height = Math.max(left.height,right.height) + 1;
+        }else{
+            output.height = Math.max(left.height,right.height);
+        }
+        
+        return output;   
+    }
+    
+}
