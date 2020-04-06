@@ -1,0 +1,65 @@
+
+public class Solution {
+
+
+
+    public static int knapsack(int[] weight,int value[],int maxWeight){
+
+//         int n=weight.length;
+//         int storage[][]=new int[n+1][maxWeight+1];
+//         for(int i=0;i<n+1;i++){
+//             for(int j=0;j<maxWeight+1;j++){
+//                 storage[i][j]=-1;
+//             }
+//         }
+//         return knapsack(weight,value,maxWeight,n+1,storage,0);
+//     }
+//     public static int knapsack(int[] weight,int value[],int maxWeight,int n,int[][] storage,int i){
+//         if(i==weight.length || maxWeight==0){
+//             storage[i][maxWeight]=0;
+//             return storage[i][maxWeight];}
+
+//         if(storage[i][maxWeight]!=-1)
+//             return storage[i][maxWeight];
+//         if(weight[i]>maxWeight)
+//         {
+//             storage[i][maxWeight]=knapsack(weight,value,maxWeight,n-1,storage,i+1);
+//             return storage[i][maxWeight];
+//         }
+//         else{
+//             int op1=value[i]+knapsack(weight,value,maxWeight-weight[i],n-1,storage,i+1);
+//             int op2=knapsack(weight,value,maxWeight,n-1,storage,i+1);
+//             storage[i][maxWeight]=Math.max(op1,op2);
+//             return storage[i][maxWeight];
+//         }
+
+//     }
+
+// }
+
+
+	/* Your class should be named Solution.
+	 * Don't write main() function.
+	 * Don't read input, it is passed as function argument.
+	 * Return output and don't print it.
+	 * Taking input and printing output is handled automatically.
+	 */
+		int storagePrev[] = new int[maxWeight+1];
+        int storageCurrent[] = new int [maxWeight+1];
+        for(int i=1;i<value.length+1;i++){
+            for(int w = 1;w<maxWeight+1;w++){
+                if(weight[i-1]>w){
+                    storageCurrent[w] = storagePrev[w];
+                }
+                else { 
+                storageCurrent[w]= Math.max(storagePrev[w - weight[i-1]]+ value[i-1],storagePrev[w]);
+                }
+            }
+                storagePrev = storageCurrent ;
+                storageCurrent = new int[maxWeight+1];
+            
+        }
+        return storagePrev[maxWeight];
+	}
+	
+}
