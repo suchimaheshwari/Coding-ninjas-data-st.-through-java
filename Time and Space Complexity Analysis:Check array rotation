@@ -1,0 +1,21 @@
+public class CheckRotation {	
+
+	public static int arrayRotateCheck(int[] arr){
+        int count=0;
+	for(int i=0;i<arr.length;i++){
+        if(arr[i]<=arr[i+1]){
+            count++;
+            continue;
+        }
+        else{
+            count++;
+          break;   
+     }
+    }
+        if(count==arr.length)
+            return 0;
+        else
+            return count;
+
+	}
+}
