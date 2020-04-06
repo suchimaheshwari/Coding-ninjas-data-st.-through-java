@@ -1,0 +1,56 @@
+public class TripletSum {	
+    public static void FindTriplet(int[] arr, int x){
+        for(int i=0;i<arr.length;i++)
+        {                              
+            for(int j=i+1;j<arr.length;j++)
+            {
+                for(int k=j+1;k<arr.length;k++)
+                {             
+                    
+                if(arr[i]+arr[j]+arr[k] == x){
+                        
+                        if(arr[i]<=arr[j] && arr[i]<=arr[k]){
+                            
+                            System.out.print(arr[i]+" ");
+                            if (arr[j]<=arr[k])
+                                System.out.println(arr[j]+" "+arr[k]);
+                           else
+                               System.out.println(arr[k]+" "+arr[j]);
+                                               
+                            
+                        }
+                        else
+                            if(arr[j]<=arr[i] && arr[j]<=arr[k]){
+                            
+                                System.out.print(arr[j]+" ");
+                            if (arr[i]<=arr[k])
+                                System.out.println(arr[i]+" "+arr[k]);
+                           else
+                               System.out.println(arr[k]+" "+arr[i]);
+                            
+                            }
+                        
+                        else{
+                        
+                            
+                                System.out.print(arr[k]+" ");
+                            if (arr[i]<=arr[j])
+                                System.out.println(arr[i]+" "+arr[j]);
+                           else
+                               System.out.println(arr[j]+" "+arr[i]);
+                            
+                        }
+
+
+
+                }
+            }
+        }
+
+
+        }
+
+
+
+    }
+}
