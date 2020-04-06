@@ -1,0 +1,28 @@
+public class solution {
+
+	public static void permutations(String input){
+		// Write your code here
+        
+        print(input,"");
+
+	}
+    
+    private static void print(String input,String output){
+        if(input.length() == 0){
+            System.out.println(output);
+            return;
+        }
+        
+        for(int i=0;i<input.length();i++){
+            String str = input.substring(0,i) + input.substring(i+1,input.length());    
+            print(str , output + input.charAt(i));
+        }
+        
+        // input = input.substring(1);
+        // print(input,output);
+        
+        
+    }
+    
+    
+}
