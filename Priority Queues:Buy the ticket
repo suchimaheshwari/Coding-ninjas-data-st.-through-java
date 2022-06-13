@@ -4,23 +4,38 @@ import java.util.PriorityQueue;
 public class Solution {
 	
 	public static int buyTicket(int input[], int k) {
-		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        
-        for(int i=0;i<input.length;i++){
-            pq.add(input[i]);
+		Queue<Integer> q = new LinkedList<Integer>();
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(10,Collections.reverseOrder());
+        for(int i: input){
+            q.add(i);
+            pq.add(i);
         }
-
-        int ans = 0;
+        int count =0;
         while(!pq.isEmpty()){
-            int x = pq.element();
-            if(x == input[k]){
-                break;
-            }else{
-                pq.remove();
-                ans++;
+            if(q.peek().equals(pq.peek())){
+                if(k==0){
+                    return count+1;
+                }
+                else 
+                {
+                    count++;
+                    q.poll();
+                    pq.poll();
+                    k--;
+                }
+            }
+            else {
+                q.add(q.peek());
+                q.poll();
+                if(k==0){
+                    k = q.size()-1;
+                    
+                }
+                else {
+                    k--;
+                }
             }
         }
-
-        return ans + 1;
+        return count;
     }
 }
