@@ -1,8 +1,7 @@
 public class Solution {
 
 	public static boolean checkAB(String input) {
-		// Write your code here
-        
+	
         if(input.length() == 0){
             return true;
         }
