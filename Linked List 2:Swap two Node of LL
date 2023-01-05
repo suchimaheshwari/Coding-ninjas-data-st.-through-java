@@ -1,7 +1,13 @@
 public class Solution 
 {
     public static  LinkedListNode<Integer> swap_nodes(LinkedListNode<Integer> head,int i,int j)
-    {
+    {   
+        if(head==null){          // base case 1
+              return head;
+	    }
+        if(i==j){               // base case 2
+		      return head;
+	    }
         LinkedListNode<Integer> temp=head,prev=null,c1=null,c2=null,p1=null,p2=null;
         int pos=0;
         while(temp!=null)
