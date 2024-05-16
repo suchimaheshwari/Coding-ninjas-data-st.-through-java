@@ -1,15 +1,25 @@
 
 public class Solution {
 
-    public static int lastIndex(int input[], int x) {
-       return lastIndex(input,x,input.length-1);
-    }
-    private static int lastIndex(int input[],int x,int startIndex){
-        if(startIndex<0)
-            return -1;
-        if(input[startIndex]==x)
-            return startIndex;
-        return lastIndex(input,x,startIndex-1);
-        }
+	public static int lastIndex(int input[], int x) {
+		return lastIndexHelper(input, x, 0);
+	}
+	public static int lastIndexHelper(int input[], int x, int si){
 
+		if(si==input.length){
+			return -1;
+		}
+		int sans=lastIndexHelper(input, x, si+1);
+		if(sans != -1){
+			return sans;
+		}
+		else{
+			if(input[si]==x){
+				return si;
+			}
+			else
+			return -1;
+		}
+
+	}
 }
